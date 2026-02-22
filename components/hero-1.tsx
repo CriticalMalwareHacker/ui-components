@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { RocketIcon, ArrowRightIcon, PhoneCallIcon } from "lucide-react";
-import { LogoCloud } from "@/components/logo-cloud-3";
 
 export function HeroSection() {
 	return (
