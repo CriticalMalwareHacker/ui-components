@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-type MenuItem = { name: string; href: string; icon?: JSX.Element | string };
+type MenuItem = { name: string; href: string; icon?: React.ReactElement | string };
 
 interface SidebarProps {
     collapsed: boolean;
