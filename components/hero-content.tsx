@@ -62,14 +62,14 @@ export function HeroContent() {
                     "text-shadow-[0_0px_50px_theme(--color-foreground/.2)]"
                 )}
             >
-                A Niche UI Library<br /> for Developers
+                A Niche UI Library<br /> For Developers
             </h1>
 
             <p
                 data-animate
                 className="mx-auto max-w-md text-center text-base text-foreground/80 tracking-wider sm:text-lg md:text-xl"
             >
-                Conecting you with world-class talent <br /> to scale, innovate and lead
+                Precision-crafted components. <br /> Interaction with intent.
             </p>
 
             <div
@@ -82,13 +82,15 @@ export function HeroContent() {
                 >
                     Get Started
                 </Button>
-                <Button
-                    className="rounded-full bg-white text-black hover:bg-white/90"
-                    size="lg"
-                >
-                    Browse Components{" "}
-                    <ArrowRightIcon className="size-4 ms-2" data-icon="inline-end" />
-                </Button>
+                <Link href="/Documentation">
+                    <Button
+                        className="rounded-full bg-white text-black hover:bg-white/90"
+                        size="lg"
+                    >
+                        Browse Components{" "}
+                        <ArrowRightIcon className="size-4 ms-2" data-icon="inline-end" />
+                    </Button>
+                </Link>
             </div>
         </div>
     );
