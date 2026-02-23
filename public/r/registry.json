@@ -1,7 +1,7 @@
 {
     "$schema": "https://ui.shadcn.com/schema/registry.json",
     "name": "sub-components",
-    "homepage": "https://ui-components.vercel.app",
+    "homepage": "https://dexterityui.vercel.app",
     "items": [
         {
             "name": "button",
