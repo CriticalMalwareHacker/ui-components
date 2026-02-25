@@ -147,11 +147,16 @@ export default function CometCardPage() {
     const [clickLog, setClickLog] = useState<string>("");
 
     return (
-        <div className="max-w-4xl space-y-12">
+        <div className="max-w-4xl space-y-12 pb-16">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-white mb-2">Comet Card</h1>
-                <p className="text-neutral-400 text-lg">
+                <div className="flex items-center gap-3 mb-3">
+                    <h1 className="text-3xl font-bold text-white">Comet Card</h1>
+                    <span className="inline-flex items-center rounded-full bg-purple-500/15 px-2.5 py-0.5 text-xs font-semibold text-purple-400 ring-1 ring-purple-500/20">
+                        New
+                    </span>
+                </div>
+                <p className="text-neutral-400 text-lg leading-relaxed">
                     An image card with hover zoom, optional rotating gradient border, and 3D tilt effect that responds to cursor position.
                 </p>
             </div>
@@ -159,12 +164,15 @@ export default function CometCardPage() {
             {/* ─── Default variant ─────────────────────────── */}
             <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-white">Default Variant</h2>
+                <p className="text-neutral-500 text-sm">
+                    Simple image card with smooth hover zoom. No border effects.
+                </p>
                 <Tabs
                     tabs={[
                         {
                             label: "Preview",
                             content: (
-                                <div className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-10">
+                                <div className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-8 md:p-10">
                                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
                                         {DEMO_IMAGES.slice(0, 3).map((img, i) => (
                                             <CometCard
@@ -174,7 +182,7 @@ export default function CometCardPage() {
                                                 description={img.description}
                                                 badge={img.badge}
                                                 variant="default"
-                                                className="w-full max-w-[260px]"
+                                                className="w-full max-w-[240px]"
                                             />
                                         ))}
                                     </div>
@@ -191,12 +199,17 @@ export default function CometCardPage() {
 
             {/* ─── Comet variant ─────────────────────────── */}
             <section className="space-y-4">
-                <h2 className="text-xl font-semibold text-white">Comet Variant</h2>
-                <p className="text-neutral-400 text-sm">
-                    Hover over the cards to reveal the rotating rainbow border and 3D tilt effect.
+                <div className="flex items-center gap-3">
+                    <h2 className="text-xl font-semibold text-white">Comet Variant</h2>
+                    <span className="inline-flex items-center rounded-md bg-emerald-500/15 px-2 py-0.5 text-xs font-medium text-emerald-400 ring-1 ring-emerald-500/20">
+                        Interactive
+                    </span>
+                </div>
+                <p className="text-neutral-500 text-sm">
+                    Hover over the cards to reveal the rotating rainbow border and 3D tilt effect. Click any card to test the click handler.
                 </p>
-                <div className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-10">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
+                <div className="rounded-lg border border-[#1a1a1a] bg-[#111111] p-8 md:p-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 justify-items-center">
                         {DEMO_IMAGES.map((img, i) => (
                             <CometCard
                                 key={i}
@@ -205,7 +218,7 @@ export default function CometCardPage() {
                                 description={img.description}
                                 badge={img.badge}
                                 variant="comet"
-                                className="w-full max-w-[220px]"
+                                className="w-full max-w-[200px]"
                                 onClick={() =>
                                     setClickLog(`Clicked: ${img.title}`)
                                 }
@@ -213,9 +226,12 @@ export default function CometCardPage() {
                         ))}
                     </div>
                     {clickLog && (
-                        <p className="mt-6 text-center text-sm font-mono text-neutral-400 animate-pulse">
-                            {clickLog}
-                        </p>
+                        <div className="mt-6 flex items-center justify-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                            <p className="text-sm font-mono text-neutral-400">
+                                {clickLog}
+                            </p>
+                        </div>
                     )}
                 </div>
             </section>
@@ -231,7 +247,7 @@ export default function CometCardPage() {
                 </div>
                 <div className="space-y-3 pt-2">
                     <p className="text-neutral-400 text-sm">
-                        No additional dependencies required beyond <code className="text-neutral-200 bg-[#1a1a1a] px-1.5 py-0.5 rounded text-xs">clsx</code> and <code className="text-neutral-200 bg-[#1a1a1a] px-1.5 py-0.5 rounded text-xs">tailwind-merge</code>.
+                        No additional dependencies required beyond <code className="text-neutral-200 bg-[#1a1a1a] px-1.5 py-0.5 rounded text-xs border border-[#2a2a2a]">clsx</code> and <code className="text-neutral-200 bg-[#1a1a1a] px-1.5 py-0.5 rounded text-xs border border-[#2a2a2a]">tailwind-merge</code>.
                     </p>
                 </div>
             </section>
@@ -239,43 +255,63 @@ export default function CometCardPage() {
             {/* ─── Props reference ───────────────────────── */}
             <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-white">Props</h2>
-                <div className="grid gap-3">
-                    {[
-                        { name: "imageUrl", type: "string", desc: "URL of the card image." },
-                        { name: "title", type: "string", desc: "Card title displayed below the image." },
-                        { name: "description", type: "string", desc: "Short description text." },
-                        { name: "badge?", type: "string", desc: "Optional badge text overlaid on the image." },
-                        { name: 'variant?', type: '"default" | "comet"', desc: "Card style variant. Defaults to \"default\"." },
-                        { name: "onClick?", type: "MouseEventHandler", desc: "Click handler — makes the card interactive & keyboard-navigable." },
-                        { name: "imageAlt?", type: "string", desc: "Custom alt text for the image. Defaults to title." },
-                        { name: "className?", type: "string", desc: "Additional classes merged via cn()." },
-                    ].map((prop) => (
-                        <div key={prop.name} className="flex items-start gap-3 rounded-lg border border-[#1a1a1a] bg-[#111111] p-4">
-                            <div className="flex items-center gap-2 shrink-0">
-                                <code className="text-sm font-mono text-neutral-200 bg-[#1a1a1a] px-2 py-0.5 rounded border border-[#2a2a2a]">
-                                    {prop.name}
-                                </code>
-                                <span className="text-xs font-mono text-purple-400">{prop.type}</span>
-                            </div>
-                            <span className="text-neutral-400 text-sm">{prop.desc}</span>
-                        </div>
-                    ))}
+                <div className="rounded-lg border border-[#1a1a1a] overflow-hidden">
+                    <table className="w-full text-sm">
+                        <thead>
+                            <tr className="border-b border-[#1a1a1a] bg-[#0e0e0e]">
+                                <th className="text-left text-neutral-500 font-medium px-4 py-3">Prop</th>
+                                <th className="text-left text-neutral-500 font-medium px-4 py-3">Type</th>
+                                <th className="text-left text-neutral-500 font-medium px-4 py-3">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {[
+                                { name: "imageUrl", type: "string", desc: "URL of the card image.", required: true },
+                                { name: "title", type: "string", desc: "Card title displayed below the image.", required: true },
+                                { name: "description", type: "string", desc: "Short description text.", required: true },
+                                { name: "badge", type: "string", desc: "Optional badge text overlaid on the image.", required: false },
+                                { name: "variant", type: '"default" | "comet"', desc: 'Card style variant. Defaults to "default".', required: false },
+                                { name: "onClick", type: "MouseEventHandler", desc: "Click handler — makes the card interactive & keyboard-navigable.", required: false },
+                                { name: "imageAlt", type: "string", desc: "Custom alt text for the image. Defaults to title.", required: false },
+                                { name: "className", type: "string", desc: "Additional classes merged via cn().", required: false },
+                            ].map((prop) => (
+                                <tr key={prop.name} className="border-b border-[#1a1a1a] last:border-0 hover:bg-white/[0.02] transition-colors">
+                                    <td className="px-4 py-3">
+                                        <div className="flex items-center gap-2">
+                                            <code className="text-sm font-mono text-neutral-200">
+                                                {prop.name}
+                                            </code>
+                                            {prop.required && (
+                                                <span className="text-[10px] font-medium text-amber-400/80">required</span>
+                                            )}
+                                        </div>
+                                    </td>
+                                    <td className="px-4 py-3">
+                                        <code className="text-xs font-mono text-purple-400 bg-purple-500/10 px-1.5 py-0.5 rounded">{prop.type}</code>
+                                    </td>
+                                    <td className="px-4 py-3 text-neutral-400">{prop.desc}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
             </section>
 
             {/* ─── Accessibility ─────────────────────────── */}
             <section className="space-y-4">
                 <h2 className="text-xl font-semibold text-white">Accessibility</h2>
-                <div className="grid gap-3">
+                <div className="grid gap-2">
                     {[
-                        "When onClick is provided the card renders role=\"button\" and tabIndex={0}.",
+                        'When onClick is provided the card renders role="button" and tabIndex={0}.',
                         "Focus ring appears on keyboard focus via focus-visible.",
                         "Enter and Space keys trigger the click handler.",
                         "Images always have descriptive alt text.",
                         "Decorative gradient border is marked aria-hidden.",
                     ].map((item, i) => (
-                        <div key={i} className="flex items-start gap-3 rounded-lg border border-[#1a1a1a] bg-[#111111] p-4">
-                            <span className="text-green-400 shrink-0">✓</span>
+                        <div key={i} className="flex items-start gap-3 rounded-lg border border-[#1a1a1a] bg-[#111111] px-4 py-3">
+                            <svg className="w-4 h-4 text-green-400 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
                             <span className="text-neutral-400 text-sm">{item}</span>
                         </div>
                     ))}
